@@ -4,6 +4,7 @@ import React from 'react'
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { setSelectedRecipe } from '../store/recipesSlice';
+import Image from 'next/image';
 export default function Card(props) {
   console.log(props)
   const dispatch = useDispatch();
@@ -11,13 +12,19 @@ export default function Card(props) {
   const handleClick = () => {
     dispatch(setSelectedRecipe(props)); // Store selected recipe in Redux
     router.push(`/recipe/${props.id}`); // Navigate to detail page
-    
+
   };
   return (
     <div className='px-2 w-[19rem] flex flex-col justify-center items-center rounded-md shadow-md shadow-[#9296b0]' key={props.id}>
       <div className="w-[18rem] h-[12rem]">
-        <img className='w-full h-full object-cover '
-          src={props.image} alt={props.name} />
+        {/* <img className='w-full h-full object-cover 'src={props.image} alt={props.name} /> */}
+        <Image
+          src={props.image}
+          alt={props.name}
+          width={500} // Replace with the desired width
+          height={500} // Replace with the desired height
+          className="w-full h-full object-cover"
+        />
       </div>
       <div className="px-2 pb-2 flex flex-col pt-3">
         <h3 className="text-[#9296b0] font-mono text-lg">{props.name}</h3>

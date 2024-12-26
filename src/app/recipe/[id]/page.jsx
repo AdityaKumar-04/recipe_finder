@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { RxCross1 } from "react-icons/rx";
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Page() {
   const [loading, setLoading] = useState(true);
@@ -34,12 +35,18 @@ export default function Page() {
         <h1 className="text-4xl font-serif font-semibold text-[#9296b0]">Recipe Details</h1>
       </div>
       <div className=" absolute font-semibold text-white top-36 right-8 text-2xl">
-        <Link href="/"><RxCross1/></Link>
+        <Link href="/"><RxCross1 /></Link>
 
       </div>
       <div className="w-full  mx-auto bg-[#31354e] p-6 rounded-lg mt-5 flex justify-between flex-col md:flex-row md:items-start items-center gap-x-5 ">
         <div className="w-full  my-4 ">
-          <img className="w-full h-full object-cover" src={recipe.image} alt={recipe.name} />
+          {/* <img className="w-full h-full object-cover" src={recipe.image} alt={recipe.name} /> */}
+          <Image
+            src={recipe.image}
+            alt={recipe.name}
+            fill
+            className="object-cover"
+          />
         </div>
         <div className="w-full py-5">
           <h2 className="text-3xl font-serif font-semibold text-[#9296b0]">{recipe.name}</h2>
@@ -59,16 +66,17 @@ export default function Page() {
           <h3 className='text-[#9296b0] font-mono text-lg mt-3'>Rating: {recipe.rating}</h3>
           <div className="flex flex-col">
             <h1 className="text-[#9296b0] font-mono text-lg mt-3 ">Reviews</h1>
-            {recipe.reviews.map((reviews, index) => {
-              return (
-                <div className="ml-4 mt-2">
-                  
-                  <h4 className='text-[#9296b0] font-mono '>{reviews.user}</h4>
-                  <p className='text-[#9296b0] font-mono '>{reviews.comment}</p>
-                  <p className='text-[#9296b0] font-mono '>Rating: {reviews.rating}</p>
+            {recipe.reviews.length === 0 ? (
+              <p className="text-[#9296b0] font-mono ml-4 mt-2">No reviews yet.</p>
+            ) : (
+              recipe.reviews.map((review, index) => (
+                <div key={index} className="ml-4 mt-2">
+                  <h4 className="text-[#9296b0] font-mono">{review.user}</h4>
+                  <p className="text-[#9296b0] font-mono">{review.comment}</p>
+                  <p className="text-[#9296b0] font-mono">Rating: {review.rating}</p>
                 </div>
-              )
-            })}
+              ))
+            )}
           </div>
         </div>
       </div>
