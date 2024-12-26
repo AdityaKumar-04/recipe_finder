@@ -30,22 +30,24 @@ export default function Page() {
     return <div className='w-full h-screen  flex justify-center items-center text-6xl font-mono font-extrabold text-[#6a6e8a] bg-[#1a1b28]'>Recipe not found</div>;
   }
   return (
-    <div className="w-full bg-[#1a1b28] relative flex flex-col justify-center items-center pt-28 px-4">
+    <div className="w-full h-screen bg-[#1a1b28] relative flex flex-col justify-center items-center pt-28 px-4">
       <div className="w-full py-6 text-center bg-[#31354e] absolute top-0">
         <h1 className="text-4xl font-serif font-semibold text-[#9296b0]">Recipe Details</h1>
       </div>
-      <div className=" absolute font-semibold text-white top-36 right-8 text-2xl">
+      <div className=" absolute font-semibold text-white top-40 right-8 text-2xl">
         <Link href="/"><RxCross1 /></Link>
 
       </div>
       <div className="w-full  mx-auto bg-[#31354e] p-6 rounded-lg mt-5 flex justify-between flex-col md:flex-row md:items-start items-center gap-x-5 ">
-        <div className="w-full  my-4 ">
+        <div className=" my-4 ">
           {/* <img className="w-full h-full object-cover" src={recipe.image} alt={recipe.name} /> */}
           <Image
-            src={recipe.image}
+            src='https://plus.unsplash.com/premium_photo-1734275012690-6d3006fba036?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
             alt={recipe.name}
-            fill
-            className="object-cover"
+            layout="responsive" // Ensures the image maintains aspect ratio and fits the container
+            width={500} // Specify the width for layout calculation
+            height={200} // Specify the height for layout calculation
+            className="object-cover w-full h-full"
           />
         </div>
         <div className="w-full py-5">
@@ -57,19 +59,19 @@ export default function Page() {
               <li key={index}>{ingredient}</li>
             ))}
           </ul>
-          <h3 className='text-[#9296b0] font-mono text-lg mt-3'>instructions</h3>
+          {/* <h3 className='text-[#9296b0] font-mono text-lg mt-3'>instructions</h3>
           <ul className="list-disc list-inside text-[#9296b0] font-mono">
             {recipe.instructions.map((instructions, index) => (
               <li key={index}>{instructions}</li>
             ))}
-          </ul>
+          </ul> */}
           <h3 className='text-[#9296b0] font-mono text-lg mt-3'>Rating: {recipe.rating}</h3>
           <div className="flex flex-col">
             <h1 className="text-[#9296b0] font-mono text-lg mt-3 ">Reviews</h1>
-            {recipe.reviews.length === 0 ? (
+            {recipe.reviews && recipe.reviews.length === 0 ? (
               <p className="text-[#9296b0] font-mono ml-4 mt-2">No reviews yet.</p>
             ) : (
-              recipe.reviews.map((review, index) => (
+              recipe.reviews?.map((review, index) => (
                 <div key={index} className="ml-4 mt-2">
                   <h4 className="text-[#9296b0] font-mono">{review.user}</h4>
                   <p className="text-[#9296b0] font-mono">{review.comment}</p>

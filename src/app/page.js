@@ -1,10 +1,9 @@
 'use client'
-
-import Input from '../components/input'
+import Input from '../components/input';
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'; 
 import { setRecipes } from '../store/recipesSlice';
 
 export default function Home() {
@@ -15,12 +14,12 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const itemsPerPage = 4;
+  const itemsPerPage = 8;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://dummyjson.com/c/e77b-19ef-4746-bec2');
+        const response = await fetch('https://dummyjson.com/c/1c0b-e284-4433-8a65');
         const data = await response.json();
         setRecipe(data); // Assuming the data is an array of recipes
       } catch (error) {
@@ -65,7 +64,7 @@ export default function Home() {
           <h1 className="text-6xl font-serif font-semibold text-[#9296b0] tracking-widest">Food recipe finder🍔</h1>
         </div>
         <div className="input-box">
-          <div className="w-full py-3 px-7 flex flex-wrap justify-center items-center gap-3 ">
+          <div className="w-full py-3 px-7 flex flex-wrap justify-center items-center gap-3">
             <Input
               placeholder="Enter food items"
               value={searchQuery}
@@ -79,7 +78,7 @@ export default function Home() {
             </div>
           ) : (
             <>
-              <div className="flex flex-wrap w-full px-[5rem] mt-5 justify-center gap-4">
+              <div className="flex flex-wrap w-full px-[5rem] mt-5 justify-center gap-4 min-h-screen">
                 {/* Rendering the current page items */}
                 {currentItems.map((recipe, index) => (
                   <Card key={recipe.id} {...recipe} />

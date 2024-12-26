@@ -15,15 +15,15 @@ export default function Card(props) {
 
   };
   return (
-    <div className='px-2 w-[19rem] flex flex-col justify-center items-center rounded-md shadow-md shadow-[#9296b0]' key={props.id}>
-      <div className="w-[18rem] h-[12rem]">
+    <div className='px-2 w-[19rem] h-full flex flex-col justify-center items-center rounded-md shadow-md shadow-[#9296b0]' key={props.id}>
+      <div className="w-[18rem] h-[12rem] pt-2">
         {/* <img className='w-full h-full object-cover 'src={props.image} alt={props.name} /> */}
         <Image
-          src={props.image}
+          src='https://plus.unsplash.com/premium_photo-1734275012690-6d3006fba036?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
           alt={props.name}
           width={500} // Replace with the desired width
           height={500} // Replace with the desired height
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded"
         />
       </div>
       <div className="px-2 pb-2 flex flex-col pt-3">
